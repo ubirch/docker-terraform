@@ -1,7 +1,7 @@
-# broadinstitute/docker-terraform
-[![](https://badge.imagelayers.io/broadinstitute/terraform:latest.svg)](https://imagelayers.io/?images=broadinstitute/terraform:latest 'Get your own badge on imagelayers.io')
-[![Docker Hub](https://img.shields.io/badge/docker-ready-blue.svg)](https://registry.hub.docker.com/u/broadinstitute/terraform/)
-[![Docker Hub](http://img.shields.io/docker/pulls/broadinstitute/terraform.svg)](https://registry.hub.docker.com/u/broadinstitute/terraform/)
+# ubirch/docker-terraform (derived from ubirch/docker-terraform)
+
+[![Docker Hub](https://img.shields.io/badge/docker-ready-blue.svg)](https://registry.hub.docker.com/u/ubirch/docker-terraform/)
+[![Docker Hub](http://img.shields.io/docker/pulls/ubirch/docker-terraform.svg)](https://registry.hub.docker.com/u/ubirch/docker-terraform/)
 
 ## What is terraform
 
@@ -13,7 +13,7 @@ http://www.terraform.io/
 
 ## Dockerfile
 
-This Docker image is based on the official [Alpine][2] 3.2 base image.
+This Docker image is based on the official [Alpine][2] 3.4 base image.
 
 ## Terraform configuration files
 
@@ -24,13 +24,13 @@ This container expects the user to mount in a directory, which will be mapped to
 For most terraform commands, the run command is as simple as:
 
 ```
-docker run -it --rm broadinstitute/terraform [--version] [--help] <command> [<args>]
+docker run -it --rm ubirch/docker-terraform [--version] [--help] <command> [<args>]
 ```
 
 Some, however, require higher network privileges and SSL certificates to function correctly, which need to be mapped into the `/etc/ssl/certs` directory in the container, similar to:
 
 ```
-docker run -it --rm -v /etc/ssl/certs:/etc/ssl/certs:ro --net=host broadinstitute/terraform [--version] [--help] <command> [<args>]
+docker run -it --rm -v /etc/ssl/certs:/etc/ssl/certs:ro --net=host ubirch/docker-terraform [--version] [--help] <command> [<args>]
 ```
 
 Therefore, the repository used to build this container also contains a usedful `terraform.sh` script that will handle most of this so that the commands can be much shorter.  All that is required is filling in a `config.sh` script so that the script will know where the `/data` directory is located as well as the path to the SSL certificates.  The script will then determine whether each individual run requires the certificates as well as things like `sudo`, etc.  Therefore, for the commands below, you could substitute the `terraform.sh` script for everything but the command and options.  For example, if you have the `config.sh` correctly configured, you could do the following to run the **apply** command:
@@ -42,79 +42,79 @@ Therefore, the repository used to build this container also contains a usedful `
 ### terraform apply
 
 ```
-docker run -it --rm -v /data:/data -v /etc/ssl/certs:/etc/ssl/certs:ro --net=host broadinstitute/terraform apply [options]
+docker run -it --rm -v /data:/data -v /etc/ssl/certs:/etc/ssl/certs:ro --net=host ubirch/docker-terraform apply [options]
 ```
 
 ### terraform destroy
 
 ```
-docker run -it --rm -v /data:/data broadinstitute/terraform destroy [options] [DIR]
+docker run -it --rm -v /data:/data ubirch/docker-terraform destroy [options] [DIR]
 ```
 
 ### terraform get
 
 ```
-docker run -it --rm -v /data:/data broadinstitute/terraform get [options] PATH
+docker run -it --rm -v /data:/data ubirch/docker-terraform get [options] PATH
 ```
 
 ### terraform graph
 
 ```
-docker run -it --rm -v /data:/data broadinstitute/terraform graph [options]
+docker run -it --rm -v /data:/data ubirch/docker-terraform graph [options]
 ```
 
 ### terraform init
 
 ```
-docker run -it --rm -v /data:/data broadinstitute/terraform init [options] SOURCE [PATH]
+docker run -it --rm -v /data:/data ubirch/docker-terraform init [options] SOURCE [PATH]
 ```
 
 ### terraform output
 
 ```
-docker run -it --rm -v /data:/data broadinstitute/terraform output [options] NAME
+docker run -it --rm -v /data:/data ubirch/docker-terraform output [options] NAME
 ```
 
 ### terraform plan
 
 ```
-docker run -it --rm -v /data:/data -v /etc/ssl/certs:/etc/ssl/certs:ro --net=host broadinstitute/terraform plan [options]
+docker run -it --rm -v /data:/data -v /etc/ssl/certs:/etc/ssl/certs:ro --net=host ubirch/docker-terraform plan [options]
 ```
 
 ### terraform push
 
 ```
-docker run -it --rm -v /data:/data -v /etc/ssl/certs:/etc/ssl/certs:ro --net=host broadinstitute/terraform push [options]
+docker run -it --rm -v /data:/data -v /etc/ssl/certs:/etc/ssl/certs:ro --net=host ubirch/docker-terraform push [options]
 ```
 
 ### terraform refresh
 
 ```
-docker run -it --rm -v /data:/data -v /etc/ssl/certs:/etc/ssl/certs:ro --net=host broadinstitute/terraform refresh [options]
+docker run -it --rm -v /data:/data -v /etc/ssl/certs:/etc/ssl/certs:ro --net=host ubirch/docker-terraform refresh [options]
 ```
 
 ### terraform remote
 
 ```
-docker run -it --rm -v /data:/data -v /etc/ssl/certs:/etc/ssl/certs:ro --net=host broadinstitute/terraform remote [options]
+docker run -it --rm -v /data:/data -v /etc/ssl/certs:/etc/ssl/certs:ro --net=host ubirch/docker-terraform remote [options]
 ```
 
 ### terraform show
 
 ```
-docker run -it --rm -v /data:/data broadinstitute/terraform show terraform.tfstate [options]
+docker run -it --rm -v /data:/data ubirch/docker-terraform show terraform.tfstate [options]
 ```
 
 ### terraform taint
 
 ```
-docker run -it --rm -v /data:/data -v /etc/ssl/certs:/etc/ssl/certs:ro --net=host broadinstitute/terraform taint [options] name
+docker run -it --rm -v /data:/data -v /etc/ssl/certs:/etc/ssl/certs:ro --net=host ubirch/docker-terraform taint [options] name
 ```
 
 ### terraform version
 
 ```
-docker run -it --rm broadinstitute/terraform version
+docker run -it --rm ubirch/docker-terraform version
 ```
 
 [1]: http://www.terraform.io/ "TerraForm"
