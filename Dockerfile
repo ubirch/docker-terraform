@@ -1,8 +1,8 @@
-FROM alpine:3.2
+FROM alpine:3.4
 
-MAINTAINER Andrew Teixeira <teixeira@broadinstitute.org>
+MAINTAINER Falko Zurell <falko.zurell@ubirch.com>
 
-ENV TERRAFORM_VERSION=0.6.15
+ENV TERRAFORM_VERSION=0.7.0
 
 VOLUME ["/data"]
 
