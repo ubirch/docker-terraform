@@ -2,7 +2,7 @@ FROM alpine:3.4
 
 MAINTAINER Falko Zurell <falko.zurell@ubirch.com>
 
-ENV TERRAFORM_VERSION=0.7.0
+ENV TERRAFORM_VERSION=0.7.7
 
 VOLUME ["/data"]
 
